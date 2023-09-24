@@ -1,26 +1,30 @@
 import { Container, Table } from "react-bootstrap";
-import axios from "axios";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { fetchAllUser } from "../action/actions";
+import { useSelector } from "react-redux";
 function TableUser(props) {
-    const [dataUser, setDataUser] = useState([]);
+    // const [dataUser, setDataUser] = useState([]);
+    const dispatch = useDispatch();
+    const dataUser = useSelector((state) => state.user.listUsers);
     useEffect(() => {
-        fetchAllUser();
+        dispatch(fetchAllUser());
     }, []);
-    const fetchAllUser = async () => {
-        let res = await axios.get("http://localhost:8080/users/all");
+    // const fetchAllUser = async () => {
+    //     let res = await axios.get("http://localhost:8080/users/all");
 
-        const data = res && res.data ? res.data : [];
-        if (data) {
-            setDataUser(data);
-            console.log(data);
-        }
-    };
+    //     const data = res && res.data ? res.data : [];
+    //     if (data) {
+    //         setDataUser(data);
+    //         console.log(data);
+    //     }
+    // };
     const handleDeleteUser = (id) => {
-        const resultDelete = dataUser.filter((data) => {
-            return data.id !== id;
-        });
-        console.log(resultDelete);
-        setDataUser(resultDelete);
+        // const resultDelete = dataUser.filter((data) => {
+        //     return data.id !== id;
+        // });
+        // console.log(resultDelete);
+        // setDataUser(resultDelete);
     };
     return (
         <>
