@@ -6,7 +6,11 @@ import { useSelector } from "react-redux";
 function TableUser(props) {
     // const [dataUser, setDataUser] = useState([]);
     const dispatch = useDispatch();
+
     const dataUser = useSelector((state) => state.user.listUsers);
+    const isError = useSelector((state) => state.user.isError);
+    const isLoading = useSelector((state) => state.user.isLoading);
+
     useEffect(() => {
         dispatch(fetchAllUser());
     }, []);
@@ -29,37 +33,49 @@ function TableUser(props) {
     return (
         <>
             <Container className="mt-3">
-                <Table striped bordered hover>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Email Address</th>
-                            <th>Username</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {dataUser &&
-                            dataUser.length > 0 &&
-                            dataUser.map((data, index) => {
-                                return (
-                                    <tr key={index}>
-                                        <td>{index + 1}</td>
-                                        <td>{data.email}</td>
-                                        <td>{data.username}</td>
-                                        <td>
-                                            <button
-                                                onClick={() => handleDeleteUser(data.id)}
-                                                className="btn btn-danger"
-                                            >
-                                                Delete
-                                            </button>
-                                        </td>
-                                    </tr>
-                                );
-                            })}
-                    </tbody>
-                </Table>
+                {isError === true ? (
+                    <div>Something Error, Please try again</div>
+                ) : (
+                    <>
+                        <Table striped bordered hover>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Email Address</th>
+                                    <th>Username</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {isLoading === true ? (
+                                    <div>Is Loading data...</div>
+                                ) : (
+                                    <>
+                                        {dataUser &&
+                                            dataUser.length > 0 &&
+                                            dataUser.map((data, index) => {
+                                                return (
+                                                    <tr key={index}>
+                                                        <td>{index + 1}</td>
+                                                        <td>{data.email}</td>
+                                                        <td>{data.username}</td>
+                                                        <td>
+                                                            <button
+                                                                onClick={() => handleDeleteUser(data.id)}
+                                                                className="btn btn-danger"
+                                                            >
+                                                                Delete
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                );
+                                            })}
+                                    </>
+                                )}
+                            </tbody>
+                        </Table>
+                    </>
+                )}
             </Container>
         </>
     );

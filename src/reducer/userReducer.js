@@ -2,28 +2,31 @@ import { FETCH_USER_REQUEST, FETCH_USERS_SUCCESS, FETCH_USERS_ERROR } from "../a
 
 const INITIAL_STATE = {
     listUsers: [],
+    isError: false,
+    isLoading: false,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case FETCH_USER_REQUEST:
-            console.log("FETCH_USER_REQUEST=", state);
-
             return {
                 ...state,
+                isError: false,
+                isLoading: true,
             };
 
         case FETCH_USERS_SUCCESS:
-            console.log("FETCH_USERS_SUCCESS=", state);
-
             return {
                 ...state,
                 listUsers: action.dataUser,
+                isError: false,
+                isLoading: false,
             };
         case FETCH_USERS_ERROR:
-            console.log("FETCH_USERS_ERROR=", state);
             return {
                 ...state,
+                isError: true,
+                isLoading: false,
             };
         default:
             return state;
