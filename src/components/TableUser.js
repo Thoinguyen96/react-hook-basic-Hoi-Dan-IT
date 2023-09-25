@@ -24,10 +24,11 @@ function TableUser(props) {
     //     }
     // };
     const handleDeleteUser = (id) => {
-        // const resultDelete = dataUser.filter((data) => {
-        //     return data.id !== id;
-        // });
-        // console.log(resultDelete);
+        const resultDelete = dataUser.filter((data) => {
+            return data.id !== id;
+        });
+        console.log(resultDelete);
+
         // setDataUser(resultDelete);
     };
     return (
@@ -46,16 +47,20 @@ function TableUser(props) {
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                {isLoading === true ? (
-                                    <div>Is Loading data...</div>
-                                ) : (
-                                    <>
-                                        {dataUser &&
-                                            dataUser.length > 0 &&
-                                            dataUser.map((data, index) => {
-                                                return (
-                                                    <tr key={index}>
+                            {isLoading === true ? (
+                                <thead>
+                                    <tr>
+                                        <th>Is Loading data...</th>
+                                    </tr>
+                                </thead>
+                            ) : (
+                                <>
+                                    {dataUser &&
+                                        dataUser.length > 0 &&
+                                        dataUser.map((data, index) => {
+                                            return (
+                                                <tbody key={index}>
+                                                    <tr>
                                                         <td>{index + 1}</td>
                                                         <td>{data.email}</td>
                                                         <td>{data.username}</td>
@@ -68,11 +73,11 @@ function TableUser(props) {
                                                             </button>
                                                         </td>
                                                     </tr>
-                                                );
-                                            })}
-                                    </>
-                                )}
-                            </tbody>
+                                                </tbody>
+                                            );
+                                        })}
+                                </>
+                            )}
                         </Table>
                     </>
                 )}
