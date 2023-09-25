@@ -14,15 +14,7 @@ function TableUser(props) {
     useEffect(() => {
         dispatch(fetchAllUser());
     }, []);
-    // const fetchAllUser = async () => {
-    //     let res = await axios.get("http://localhost:8080/users/all");
 
-    //     const data = res && res.data ? res.data : [];
-    //     if (data) {
-    //         setDataUser(data);
-    //         console.log(data);
-    //     }
-    // };
     const handleDeleteUser = (id) => {
         dispatch(deleteUserRedux(id));
     };
