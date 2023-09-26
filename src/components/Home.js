@@ -1,13 +1,9 @@
-import FormAddNew from "./FormAddNew";
-import Header from "./Header";
-import TableUser from "./TableUser";
+import Counter from "./Counter";
 
 function Home(props) {
     return (
         <div>
-            <Header />
-            <FormAddNew />
-            <TableUser />
+            <Counter />
         </div>
     );
 }
