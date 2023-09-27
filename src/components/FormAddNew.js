@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Container } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { useDispatch, useSelector } from "react-redux";
-import { createUserRedux } from "../action/actions";
+import { createUserRedux } from "../redux/slice/userSlice";
 function FormAddNew() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");

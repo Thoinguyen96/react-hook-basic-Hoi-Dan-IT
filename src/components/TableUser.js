@@ -1,10 +1,9 @@
 import { Container, Table } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteUserRedux, fetchAllUser } from "../action/actions";
+import { fetchAllUser, deleteUserRedux } from "../redux/slice/userSlice";
 import { useSelector } from "react-redux";
 function TableUser(props) {
-    // const [dataUser, setDataUser] = useState([]);
     const dispatch = useDispatch();
 
     const dataUser = useSelector((state) => state.user.listUsers);
@@ -17,6 +16,7 @@ function TableUser(props) {
 
     const handleDeleteUser = (id) => {
         dispatch(deleteUserRedux(id));
+        dispatch(fetchAllUser());
     };
     return (
         <>

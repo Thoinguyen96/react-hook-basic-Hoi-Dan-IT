@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 
 function Header() {
     const dataUser = useSelector((state) => state.user.listUsers);
-    console.log(dataUser);
     return (
         <>
             <Navbar expand="lg" className="bg-body-tertiary">
